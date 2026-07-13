@@ -28,13 +28,12 @@ typedef struct{
 typedef struct{
 	GPIO_TypeDef *port;
 	uint16_t pin;
-
+	LedMode_t mode;
 }Led_t;
 
 typedef struct{
 	Led_t led;
 	Button_t button;
-	LedMode_t mode;
 	Timer_t timer;
 }App_t;
 

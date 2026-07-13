@@ -5,4 +5,5 @@
 
 void Led_toggle(Led_t *);
 void Led_off(Led_t *);
-
+void Led_setMode(Led_t *, LedMode_t);
+void Led_update(Led_t *);
