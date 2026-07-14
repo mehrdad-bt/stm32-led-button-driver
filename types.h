@@ -20,8 +20,6 @@ typedef enum{
 typedef struct{
 	uint32_t start_timer;
 	uint32_t period;
-	bool running;
-	bool f_running;
 }Timer_t;
 
 
@@ -29,11 +27,11 @@ typedef struct{
 	GPIO_TypeDef *port;
 	uint16_t pin;
 	LedMode_t mode;
+	Timer_t timer;
 }Led_t;
 
 typedef struct{
 	Led_t led;
 	Button_t button;
-	Timer_t timer;
 }App_t;
 

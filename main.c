@@ -104,7 +104,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		App_Process(&app);
-	
+		Led_update(&app.led);
 		
 //		Led_Update(&app.led);
   }
