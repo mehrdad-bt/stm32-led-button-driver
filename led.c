@@ -1,6 +1,16 @@
 #include "led.h"
 
 
+void Led_init(Led_t *led)
+{
+		led->port = GPIOB;
+	  led->pin = GPIO_PIN_12;
+		led->mode = MODE_OFF;
+		led->timer.start_timer = 0;
+		led->timer.period = 0;
+		led->blinkPeriod = 0;
+}
+
 
 void Led_toggle(Led_t *led)
 {
@@ -14,6 +24,20 @@ void Led_off(Led_t *led)
 
 void Led_setMode(Led_t *led, LedMode_t led_mode)
 {
+		switch(led_mode)
+		{
+		case MODE_OFF:
+				break;
+
+		case MODE_BLINK:
+				led->blinkPeriod = 500;
+				break;
+
+		case MODE_FAST:
+				led->blinkPeriod = 300;
+				break;
+		}
+		
 	  if(led->mode != led_mode)
     {
         led->mode = led_mode;
@@ -33,14 +57,6 @@ void Led_update(Led_t *led)
 		break;
 		
 		case MODE_BLINK:
-		{
-     if(Timer_expired(&led->timer))
-			{
-				Led_toggle(led);
-			}
-		}
-		break;
-		
 		case MODE_FAST:
 		{
      if(Timer_expired(&led->timer))
@@ -48,7 +64,6 @@ void Led_update(Led_t *led)
 				Led_toggle(led);
 			}
 		}
-		
 		break;
 		
 	}

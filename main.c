@@ -94,6 +94,7 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
 	App_init(&app);
+	Led_init(&app.led);
   /* USER CODE END 2 */
 
   /* Infinite loop */
