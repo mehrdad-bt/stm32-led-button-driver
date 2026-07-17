@@ -14,10 +14,10 @@ void Led_off(Led_t *led)
 
 void Led_setMode(Led_t *led, LedMode_t led_mode)
 {
-	  if(led->mode != mode)
+	  if(led->mode != led_mode)
     {
-        led->mode = mode;
-        Timer_start(&led->timer, period);
+        led->mode = led_mode;
+        Timer_start(&led->timer, led->blinkPeriod);
     }
 }
 
@@ -43,19 +43,15 @@ void Led_update(Led_t *led)
 		
 		case MODE_FAST:
 		{
-			if(!led->timer.f_running)
-			{ 
-			  Timer_start(&led->timer, 200);
-				led->timer.f_running = true;
-			}
-			if( Timer_expired(&led->timer) )
+     if(Timer_expired(&led->timer))
 			{
 				Led_toggle(led);
-				Timer_start(&led->timer, 200);
 			}
 		}
+		
 		break;
 		
 	}
 	
 }
+

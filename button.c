@@ -27,6 +27,6 @@ bool Button_update(Button_t *button)
 		     return false;
   }
 	
-	
+	return false;
 }
 

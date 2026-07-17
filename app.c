@@ -13,8 +13,7 @@ void App_init(App_t *app)
 	app->led.timer.period = 0;
 	app->button.last_state = false;
 	app->button.last_press_time = 0;
-	app->led.timer.running = false;
-	app->led.timer.f_running = false;
+	app->led.blinkPeriod = 0;
 
 }
 
@@ -27,15 +26,15 @@ void App_Process(App_t *app)
 		{
 			case MODE_OFF:
 			{
-				Led_setMode(&app->led, MODE_BLINK);
-			
+				app->led.blinkPeriod = 500;
+				Led_setMode(&app->led, MODE_BLINK);				
 		  }
 			break;
 			
 			case MODE_BLINK:
 			{
-				Led_setMode(&app->led, MODE_FAST);
-				
+				app->led.blinkPeriod = 300;
+				Led_setMode(&app->led, MODE_FAST);				
 			}
 			
 			break;

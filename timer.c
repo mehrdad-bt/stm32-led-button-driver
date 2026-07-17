@@ -15,7 +15,7 @@ bool Timer_expired(Timer_t *timer)
 	
   if( (current_time - timer->start_timer) >= timer->period )
 	{
-		timer->running = false;
+		timer->start_timer = current_time;
 		return true;
 	}
 	return false;

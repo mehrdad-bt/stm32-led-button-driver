@@ -28,6 +28,7 @@ typedef struct{
 	uint16_t pin;
 	LedMode_t mode;
 	Timer_t timer;
+	uint32_t blinkPeriod;
 }Led_t;
 
 typedef struct{
