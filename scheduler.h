@@ -4,4 +4,6 @@
 
 void Scheduler_init(void);
 void Scheduler_Run(void);
-
+static void Scheduler_ButtonTask(void);
+static void Scheduler_AppTask(void);
+static void Scheduler_LedTask(void);

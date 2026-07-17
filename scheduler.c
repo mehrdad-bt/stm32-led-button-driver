@@ -8,11 +8,26 @@ void Scheduler_init(void)
 	Led_init(&app.led);
 }
 
+static void Scheduler_ButtonTask(void)
+{
+    app.button.event = Button_update(&app.button);
+}
+
+static void Scheduler_AppTask(void)
+{
+    App_Process(&app, app.button.event);
+}
+
+static void Scheduler_LedTask(void)
+{
+    Led_update(&app.led);
+}
+
+
 void Scheduler_Run(void)
 {
-	  Event_t event;
-		event = Button_update(&app.button);
-		App_Process(&app, event);
-		Led_update(&app.led);
+	Scheduler_ButtonTask();
+	Scheduler_AppTask();
+	Scheduler_LedTask();
 }
 
