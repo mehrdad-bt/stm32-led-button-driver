@@ -2,11 +2,18 @@
 #include "stm32f1xx_hal.h"
 #include <stdbool.h>
 
+typedef enum{
+	BUTTON_PRESSED,
+	BUTTON_RELEASED
+}Event_t;
+
+
 typedef struct{
 	GPIO_TypeDef *port;
 	uint16_t pin;
 	bool last_state;
 	uint32_t last_press_time;
+	Event_t event;
 }Button_t;
 
 
@@ -35,4 +42,6 @@ typedef struct{
 	Led_t led;
 	Button_t button;
 }App_t;
+
+
 

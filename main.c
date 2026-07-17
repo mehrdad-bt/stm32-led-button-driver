@@ -25,13 +25,14 @@
 #include "button.h"
 #include "app.h"
 #include "led.h"
+#include "scheduler.h"
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
-App_t app;
+
 
 /* USER CODE END PTD */
 
@@ -93,8 +94,8 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-	App_init(&app);
-	Led_init(&app.led);
+	
+	Scheduler_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -104,10 +105,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		App_Process(&app);
-		Led_update(&app.led);
+		Scheduler_Run();
 		
-//		Led_Update(&app.led);
   }
   /* USER CODE END 3 */
 }

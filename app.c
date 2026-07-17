@@ -10,11 +10,12 @@ void App_init(App_t *app)
 	app->button.last_press_time = 0;
 }
 
-void App_Process(App_t *app)
+void App_Process(App_t *app, Event_t event)
 {
 	
- 	if( Button_update(&app->button) )
-	{
+	  if( event == BUTTON_PRESSED)
+		{
+			
 		switch (app->led.mode)
 		{
 			case MODE_OFF:	
@@ -39,6 +40,9 @@ void App_Process(App_t *app)
 			break;
 
 		}
+		
+	  }
+		
 	}
 	
 	
@@ -49,7 +53,8 @@ void App_Process(App_t *app)
 	
 	
 	
-}
+
+
 	
 
 

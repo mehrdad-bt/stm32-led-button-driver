@@ -1,7 +1,7 @@
 #include "button.h"
 
 
-bool Button_update(Button_t *button)
+Event_t Button_update(Button_t *button)
 {
 	
 	GPIO_PinState pin;
@@ -11,22 +11,25 @@ bool Button_update(Button_t *button)
 	
 	if( current_time - button->last_press_time < 200)
 	{	
-			return false;
+			button->event = BUTTON_RELEASED;
+			return button->event;
 	}
 		
 	if ((pin == GPIO_PIN_RESET) && (button->last_state == true))
 	{
       button->last_state = false;
       button->last_press_time = current_time;
-      return true;
+			button->event = BUTTON_PRESSED;
+      return button->event;
   }
 	
 	if (pin == GPIO_PIN_SET) 
 	{
          button->last_state = true;
-		     return false;
+				 button->event = BUTTON_RELEASED;
+		     return button->event;
   }
 	
-	return false;
+	return button->event;
 }
 

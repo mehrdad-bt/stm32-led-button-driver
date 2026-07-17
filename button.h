@@ -1,5 +1,5 @@
 #include "types.h"
 
 
-bool Button_update(Button_t *);
+Event_t Button_update(Button_t *);
 
