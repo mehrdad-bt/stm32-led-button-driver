@@ -1,6 +1,8 @@
 #pragma once
 #include "stm32f1xx_hal.h"
 #include <stdbool.h>
+#include <string.h>
+#include <stdio.h>
 
 typedef enum{
 	BUTTON_PRESSED,
@@ -39,9 +41,17 @@ typedef struct{
 }Led_t;
 
 typedef struct{
+	 UART_HandleTypeDef *huart;
+	 Timer_t timer;
+}Uart_t;
+
+
+typedef struct{
 	Led_t led;
 	Button_t button;
+	Uart_t uart;
 }App_t;
+
 
 
 
